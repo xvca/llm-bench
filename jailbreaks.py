@@ -121,10 +121,13 @@ def art_prompt(base_prompt: str) -> str:
 
 def adversarial_suffix_prompt(base_prompt: str) -> str:
     """
-    Adversarial Suffix: Appends optimized 'suffix' strings (e.g., via GCG) to force compliance.
+    Adversarial Suffix: Appends optimized 'suffix' strings (e.g., via Greedy Coordinate Gradient) to force compliance. 
+    The GCG technique wasn't implemented here, I simply wanted to get an idea of if it would work with a template suffix.
+    There may be some overlap for this suffix but it's not expected to work based on how this technique functions.
+    
+    GCG works by iteratively trying different suffixes and using the output to measure if a change was good or bad until the model
+    gives an acceptable output.
 
-    Effectiveness: High in research (~60-80%) but model-specific; requires optimization tools for full effect.
-    These work by swapping tokens repeatedly until an optimal suffix is found Use simple suffixes for testing.
     Source: "Universal and Transferable Adversarial Attacks on Aligned Language Models" (Zou et al., arXiv:2307.15043, 2023).
     """
 
