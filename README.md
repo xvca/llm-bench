@@ -1,0 +1,97 @@
+# LLM Jailbreak Benchmark
+
+A tool for benchmarking and quantifying the robustness of various Large Language Models (LLMs) against different jailbreaking techniques across different harmful request categories.
+
+## Project Overview
+
+Large Language Models have rapidly evolved from simple text generators to tools capable of reasoning and problem-solving. This presents some risks, as the same capabilities that allow LLMs to assist with legitimate tasks could potentially be exploited for harmful purposes such as:
+
+- Generating misinformation
+- Creating personalized phishing attacks
+- Writing malware
+- Providing dangerous instructions
+
+As LLMs increasingly perform agentic tasks with access to operating systems and other programs, understanding the robustness of their safety mechanisms is becoming more important. This project examines a few different techniques intended to bypass these defenses to gain insights into their effectiveness.
+
+> **Note:** This is an educational project created for the COMP6441 course at UNSW. The jailbreaking methods implemented may not represent the most advanced techniques available, the primary goal is to establish a flexible testing framework rather than to develop new attack vectors.
+
+## Benchmark Categories
+
+The benchmark tests LLM responses across five harmful content categories:
+
+1. **Cybercrime**: Instructions for hacking, malware creation, etc.
+2. **Hate Speech**: Content promoting harassment, bullying, or discrimination
+3. **Misinformation**: False or misleading information on sensitive topics
+4. **Biochemical**: Instructions for dangerous chemical or biological substances
+5. **Illegal Activities**: Guidance on various unlawful actions
+
+These content categories and their respective prompts were sourced from the [HarmBench](https://github.com/centerforaisafety/HarmBench) Repo.
+
+## Jailbreak Techniques
+
+The benchmark employs eight distinct jailbreaking methods:
+
+- Basic DAN (Do Anything Now) prompting
+- Story/Hypothetical framing
+- Base64 obfuscation
+- Refusal suppression
+- Token smuggling
+- Basic variation of ArtPrompt (ASCII art-based)
+- Adversarial suffix technique
+
+## Supported Models
+
+This benchmark is built around the [OpenRouter API](https://openrouter.ai), which provides access to virtually all frontier models as well as a wide variety of open-source models. The default configuration includes:
+
+- OpenAI models (GPT-4o, GPT-3.5)
+- Anthropic models (Claude 3.5 Sonnet, Claude 3 Haiku)
+- Meta models (Llama 3.3 70B, Llama 4 Scout)
+- Google models (Gemini 2.0 Flash, Gemini Flash 1.5)
+- And many more
+
+You can easily modify the list of tested models in the `config.py` file to include any model available through OpenRouter.
+
+## Setup Instructions
+
+### Prerequisites
+
+- Python 3.8+
+- pip (Python package installer)
+- OpenRouter API key ([openrouter.ai](https://openrouter.ai))
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/xvca/llm-bench.git
+   cd llm-bench
+   ```
+
+2. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file in the project root with your OpenRouter API key:
+   ```
+   OPENROUTER_API_KEY=your_api_key_here
+   ```
+
+## Usage
+
+Run the benchmark with:
+
+```
+python benchmark.py
+```
+
+Results will be saved to the `logs` directory in CSV format, containing detailed information about each test including the model, category, prompt, jailbreak method, response, and token usage.
+
+## Extending the Framework
+
+This project was designed as a flexible framework that can be easily extended:
+
+1. Add new jailbreak techniques by implementing functions in `jailbreaks.py` and adding them to the `ALL_JAILBREAKS` list
+2. Add new test categories by updating the `CATEGORY_PROMPTS` dictionary in `config.py`
+3. Test different models by modifying the `MODELS` list in `config.py`
+
