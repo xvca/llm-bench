@@ -11,7 +11,7 @@ Large Language Models have rapidly evolved from simple text generators to tools 
 - Writing malware
 - Providing dangerous instructions
 
-As LLMs increasingly perform agentic tasks with access to operating systems and other programs, understanding the robustness of their safety mechanisms is becoming more important. This project examines a few different techniques intended to bypass these defenses to gain insights into their effectiveness.
+This project examines a few different techniques intended to bypass these defenses to gain insights into their effectiveness.
 
 > **Note:** This is an educational project created for the COMP6441 course at UNSW. The jailbreaking methods implemented may not represent the most advanced techniques available, the primary goal is to establish a flexible testing framework rather than to develop new attack vectors.
 
